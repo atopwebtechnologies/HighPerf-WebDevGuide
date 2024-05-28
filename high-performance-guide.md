@@ -211,9 +211,10 @@ In the microblogging system, business requirements might include the ability for
 
 ## Key Concepts 🧩
 
-- **Entities:** Objects with distinct identities.
+   - **Entities:** Objects with distinct identities.
 
   **Example:**
+
   In a microblogging system, a User entity represents a user with unique attributes like userID, username, email, etc.
 
   ```typescript
@@ -227,21 +228,21 @@ In the microblogging system, business requirements might include the ability for
 
  ```
 
-- **Value Objects:** Objects defined by their attributes.
 
-**Example:**
-In a microblogging system, a Content value object might represent the text and media within a post.
+ - **Value Objects:** Objects defined by their attributes.
 
-```typescript
-class Content {
-    constructor(
-        public text: string,
-        public mediaUrls: string[]
-    ) {}
-}
+    **Example:** In a microblogging system, a Content value object might represent the text and media within a post.
 
- ```
+    ```typescript
+   class Content {
+       constructor(
+           public text: string,
+           public mediaUrls: string[]
+       ) {}
+   }
 
+    ```
+    
  - **Aggregates:** Clusters of domain objects treated as a single unit.
 
     **Example:**
