@@ -275,7 +275,6 @@ class Content {
         update(post: Post): Promise<void>;
         delete(postId: string): Promise<void>;
     }
-
     ```
 
    - **Services:** Operations that don't fit within entities or value objects.
