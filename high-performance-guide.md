@@ -211,9 +211,10 @@ In the microblogging system, business requirements might include the ability for
 
 ## Key Concepts 🧩
 
-- **Entities:** Objects with distinct identities.
+   - **Entities:** Objects with distinct identities.
 
   **Example:**
+
   In a microblogging system, a User entity represents a user with unique attributes like userID, username, email, etc.
 
   ```typescript
@@ -227,21 +228,21 @@ In the microblogging system, business requirements might include the ability for
 
  ```
 
-- **Value Objects:** Objects defined by their attributes.
 
-**Example:**
-In a microblogging system, a Content value object might represent the text and media within a post.
+ - **Value Objects:** Objects defined by their attributes.
 
-```typescript
-class Content {
-    constructor(
-        public text: string,
-        public mediaUrls: string[]
-    ) {}
-}
+    **Example:** In a microblogging system, a Content value object might represent the text and media within a post.
 
- ```
+    ```typescript
+   class Content {
+       constructor(
+           public text: string,
+           public mediaUrls: string[]
+       ) {}
+   }
 
+    ```
+    
  - **Aggregates:** Clusters of domain objects treated as a single unit.
 
     **Example:**
@@ -278,39 +279,38 @@ class Content {
     ```
 
    - **Services:** Operations that don't fit within entities or value objects.
+     
+       **Example:**
+       A NotificationService sends notifications to users when there are new comments or likes on their posts.
+   
+       ```typescript
+       
+       class NotificationService {
+           sendNotification(user: User, message: string): void {
+               // Logic to send notification
+           }
+       }
+   
+       ```
+    
+   - **Factories:** Objects responsible for creating complex objects.
 
-    **Example:**
-    A NotificationService sends notifications to users when there are new comments or likes on their posts.
+      **Example:** Objects responsible for creating complex objects.
+   
+       ```typescript
+       class PostFactory {
+           static createPost(content: Content, author: User): Post {
+               const postID = generateUniqueId(); // Function to generate a unique ID
+               return new Post(postID, content, author, [], []);
+           }
+       }
+       ```
+    
+## Repository Pattern 🏦
 
-    ```typescript
-    class NotificationService {
-        sendNotification(user: User, message: string): void {
-            // Logic to send notification
-        }
-    }
+The Repository pattern abstracts data access, providing a centralized interface for accessing domain objects. It decouples the business logic from the data access logic, making the system more modular and easier to test.
 
-    ```
-
-
-    - **Factories:** Objects responsible for creating complex objects.
-
-    **Example:**
-    Objects responsible for creating complex objects.
-
-    ```typescript
-    class PostFactory {
-        static createPost(content: Content, author: User): Post {
-            const postID = generateUniqueId(); // Function to generate a unique ID
-            return new Post(postID, content, author, [], []);
-        }
-    }
-
-    ```
-
-    ## Repository Pattern 🏦
-    The Repository pattern abstracts data access, providing a centralized interface for accessing domain objects. It decouples the business logic from the data access logic, making the system more modular and easier to test.
-
-    ### Example Repository Interface in TypeScript
+   ### Example Repository Interface in TypeScript
 
      ```typescript
     interface IPostRepository {
@@ -320,39 +320,38 @@ class Content {
         update(post: Post): Promise<void>;
         delete(postId: string): Promise<void>;
     }
-
     ```
 
-    ## Example Repository Implementation in TypeScript
+   ## Example Repository Implementation in TypeScript
 
         ```typescript
-    class PostRepository implements IPostRepository {
-        async create(post: Post): Promise<void> {
-            // Logic to create a post
-        }
-
-        async findById(postId: string): Promise<Post> {
-            // Logic to find a post by ID
-        }
-
-        async findAll(): Promise<Post[]> {
-            // Logic to find all posts
-        }
-
-        async update(post: Post): Promise<void> {
-            // Logic to update a post
-        }
-
-        async delete(postId: string): Promise<void> {
-            // Logic to delete a post
-        }
-    }
+       class PostRepository implements IPostRepository {
+           async create(post: Post): Promise<void> {
+               // Logic to create a post
+           }
+   
+           async findById(postId: string): Promise<Post> {
+               // Logic to find a post by ID
+           }
+   
+           async findAll(): Promise<Post[]> {
+               // Logic to find all posts
+           }
+   
+           async update(post: Post): Promise<void> {
+               // Logic to update a post
+           }
+   
+           async delete(postId: string): Promise<void> {
+               // Logic to delete a post
+           }
+       }
 
     ```
 
-    ## Example of the Repository Pattern in Action
+   ## Example of the Repository Pattern in Action
 
-    In our microblogging system, consider a scenario where a new post is created. The PostService would use the PostRepository to add the new post to the database without worrying about the underlying database operations.
+In our microblogging system, consider a scenario where a new post is created. The PostService would use the PostRepository to add the new post to the database without worrying about the underlying database operations.
 
         ```typescript
     class PostService {
@@ -367,8 +366,10 @@ class Content {
             await this.postRepository.create(newPost);
         }
     }
+    
     ```
-    This structure ensures that the business logic in PostService remains clean and focused on its primary responsibilities, while the PostRepository handles all interactions with the data store. 🚀
+    
+This structure ensures that the business logic in PostService remains clean and focused on its primary responsibilities, while the PostRepository handles all interactions with the data store. 🚀
 
 ## Building a Microblogging System
 
