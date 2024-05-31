@@ -15,18 +15,29 @@ microblogging-system/
 ├── services/
 │   ├── user-service/
 │   │   ├── src/
-│   │   │   ├── controllers/
-│   │   │   │   └── userController.ts
-│   │   │   ├── models/
-│   │   │   │   └── userModel.ts
-│   │   │   ├── repositories/
-│   │   │   │   └── userRepository.ts
-│   │   │   ├── services/
-│   │   │   │   └── userService.ts
-│   │   │   ├── utils/
-│   │   │   │   └── generateUniqueId.ts
+│   │   │   ├── domain/
+│   │   │   │   ├── entities/
+│   │   │   │   │   └── user.ts
+│   │   │   │   ├── value-objects/
+│   │   │   │   │   └── profile.ts
+│   │   │   │   ├── aggregates/
+│   │   │   │   │   └── userAggregate.ts
+│   │   │   │   ├── repositories/
+│   │   │   │   │   └── userRepository.ts
+│   │   │   ├── application/
+│   │   │   │   └── services/
+│   │   │   │       └── userService.ts
+│   │   │   ├── infrastructure/
+│   │   │   │   ├── persistence/
+│   │   │   │   │   └── userRepositoryImpl.ts
+│   │   │   │   └── utils/
+│   │   │   │       └── generateUniqueId.ts
+│   │   │   ├── interfaces/
+│   │   │   │   ├── controllers/
+│   │   │   │   │   └── userController.ts
+│   │   │   │   └── http/
+│   │   │   │       └── expressApp.ts
 │   │   │   ├── index.ts
-│   │   │   ├── app.ts
 │   │   │   └── config/
 │   │   │       └── db.ts
 │   │   ├── .env

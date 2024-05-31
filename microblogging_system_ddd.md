@@ -131,7 +131,7 @@ class UserRepository implements IUserRepository {
 
 ### Services 🛡️
 
-**UserService:**Manages user-related operations such as registration, login, and profile updates.
+**UserService:** Manages user-related operations such as registration, login, and profile updates.
 
 ```typescript
 class UserService {
